@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier la tâche</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #0077cc;
+            color: white;
+            border: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Modifier la tâche</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="title" value="{{ task.title }}" required>
+
+            <select name="priority">
+                <option value="Basse" {% if task.priority == 'Basse' %}selected{% endif %}>Basse</option>
+                <option value="Moyenne" {% if task.priority == 'Moyenne' %}selected{% endif %}>Moyenne</option>
+                <option value="Haute" {% if task.priority == 'Haute' %}selected{% endif %}>Haute</option>
+            </select>
+
+            <select name="category">
+                <option value="Études" {% if task.category == 'Études' %}selected{% endif %}>Études</option>
+                <option value="Travail" {% if task.category == 'Travail' %}selected{% endif %}>Travail</option>
+                <option value="Personnel" {% if task.category == 'Personnel' %}selected{% endif %}>Personnel</option>
+                <option value="Autre" {% if task.category == 'Autre' %}selected{% endif %}>Autre</option>
+            </select>
+
+            <input type="datetime-local" name="deadline" value="{% if task.deadline %}{{ task.deadline|date:'Y-m-d\\TH:i' }}{% endif %}">
+
+            <button type="submit">Enregistrer</button>
+        </form>
+
+        <a href="{% url 'index' %}">⬅ Retour</a>
+    </div>
+</body>
+</html>
