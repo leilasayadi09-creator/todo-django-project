@@ -57,8 +57,3 @@ python manage.py migrate
 # Lancer le serveur
 python manage.py runserver
 
-## 🏗️ Architecture
-
-- `tasks/` → logique métier (modèles, vues)
-- `templates/` → interface utilisateur
-- `todo_project/` → configuration Django
