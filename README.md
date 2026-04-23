@@ -57,3 +57,11 @@ python manage.py migrate
 # Lancer le serveur
 python manage.py runserver
 
+# Resume 
+git clone https://github.com/leilasayadi09-creator/todo-django-project.git
+cd todo-django-project
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
